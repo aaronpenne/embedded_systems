@@ -1,0 +1,37 @@
+pprof results for client and server
+
+client
+------
+root@beaglebone:~/lowpan# go tool pprof c2 /tmp/profile522427544/cpu.pprof
+Possible precedence issue with control flow operator at /usr/lib/go/pkg/tool/linux_arm/pprof line 3008.
+Welcome to pprof!  For help, type 'help'.
+(pprof) top10
+Total: 1186 samples
+     307  25.9%  25.9%     1080  91.1% runtime.cgocall
+     120  10.1%  36.0%      214  18.0% runtime.reentersyscall
+     116   9.8%  45.8%      204  17.2% runtime.exitsyscall
+      97   8.2%  54.0%      326  27.5% runtime.entersyscall
+      69   5.8%  59.8%       82   6.9% exitsyscallfast
+      61   5.1%  64.9%      109   9.2% endcgo
+      49   4.1%  69.1%     1122  94.6% main._Cfunc_get_switch
+      48   4.0%  73.1%       58   4.9% runtime.asmcgocall
+      38   3.2%  76.3%       45   3.8% runtime.lockOSThread
+      38   3.2%  79.5%       48   4.0% runtime.unlockOSThread
+
+server
+------
+root@beaglebone:~/lowpan# go tool pprof s /tmp/profile061828877/cpu.pprof
+Possible precedence issue with control flow operator at /usr/lib/go/pkg/tool/linux_arm/pprof line 3008.
+Welcome to pprof!  For help, type 'help'.
+(pprof) top10
+Total: 21 samples
+       5  23.8%  23.8%        5  23.8% runtime.usleep
+       5  23.8%  47.6%        5  23.8% syscall.Syscall
+       4  19.0%  66.7%        4  19.0% runtime.futex
+       2   9.5%  76.2%        4  19.0% syscall.Syscall6
+       1   4.8%  81.0%        1   4.8% fmt.(*pp).printArg
+       1   4.8%  85.7%        1   4.8% net.(*fdMutex).RWUnlock
+       1   4.8%  90.5%        1   4.8% runtime.MSpan_Sweep
+       1   4.8%  95.2%        1   4.8% runtime.netpoll
+       1   4.8% 100.0%        1   4.8% runtime.newstack
+       0   0.0% 100.0%        9  42.9% System
